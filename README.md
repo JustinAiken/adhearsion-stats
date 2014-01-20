@@ -1,6 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/JustinAiken/adhearsion-stats.png?branch=master)](http://travis-ci.org/JustinAiken/adhearsion-stats)
-
-# Adhearsion Stats
+# Adhearsion Stats [![Build Status](https://secure.travis-ci.org/JustinAiken/adhearsion-stats.png?branch=master)](http://travis-ci.org/JustinAiken/adhearsion-stats)[![Code Climate](https://codeclimate.com/github/JustinAiken/adhearsion-stats.png)](https://codeclimate.com/github/JustinAiken/adhearsion-stats)[![Coverage Status](https://coveralls.io/repos/JustinAiken/adhearsion-stats/badge.png)](https://coveralls.io/r/JustinAiken/adhearsion-stats)
 
 This is an Adhearsion plugin for sending metrics to a [statsd server](https://github.com/etsy/statsd/).
 
