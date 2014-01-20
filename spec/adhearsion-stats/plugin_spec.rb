@@ -2,9 +2,6 @@ require 'spec_helper'
 
 describe AdhearsionStats do
 
-  let(:logfile) { double "File", 'sync=' => true }
-  before { File.stub(:open).and_return logfile }
-
   describe "plugin configuration" do
     it "sets the default values" do
       Adhearsion.config[:statsd].host.should == '127.0.0.1'
@@ -14,9 +11,12 @@ describe AdhearsionStats do
   end
 
   describe "initialization" do
+    let(:logfile)       { double "File", 'sync=' => true }
+    let!(:dummy_logger) { AdhearsionStats::MetricsLogger.new(STDOUT) }
 
     before do
-      subject
+      File.stub(:open).and_return logfile
+      AdhearsionStats::MetricsLogger.stub(:new).with(logfile).and_return dummy_logger
       Adhearsion.config[:statsd].log_metrics = true
       Adhearsion::Plugin.initializers.each { |plugin_initializer| plugin_initializer.run }
     end
