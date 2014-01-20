@@ -51,7 +51,12 @@ If you set the `log_metrics` option to true, it will generate a log file called 
 
 #### Counters (`#increment` and `#decrement`)
 
-Either increments or decrements a simple counter.  Mostly used for checking rate of things happening By default will go up or down one, but you can also pass a value to increment a set amount: `AdhearsionStats.increment "foo", 10`.
+Either increments or decrements a simple counter.  Mostly used for checking rate of things happening.
+By default will go up or down one, but you can also pass a value to increment a set amount:
+
+```ruby
+AdhearsionStats.increment "foo", 10
+```
 
 #### Timers (`#timing` and `#time`)
 
@@ -82,9 +87,13 @@ end
 
 ```
 
-#### Gauges
+#### Gauges (`#gauge`)
 
 Used to track running counts of something - these aren't reset each flush period.
+
+```ruby
+AdhearsionStats.gauge "foo", +4 #This now goes up 4 and stays up 4 until the next time the gauge is sent something
+```
 
 ### Links
 
