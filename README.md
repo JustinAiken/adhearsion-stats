@@ -36,6 +36,56 @@ private
 end
 ```
 
+## Optional Logging
+
+If you set the `log_metrics` option to true, it will generate a log file called `adhearsion-stats.log` next to the `adhearsion.log` showing every call send to statsd:
+
+```
+...
+2014-01-14 01:08:53 PM: increment(foo)
+2014-01-14 01:08:53 PM: timing(bar,100)
+...
+```
+
+## Stat Types
+
+#### Counters (`#increment` and `#decrement`)
+
+Either increments or decrements a simple counter.  Mostly used for checking rate of things happening By default will go up or down one, but you can also pass a value to increment a set amount: `AdhearsionStats.increment "foo", 10`.
+
+#### Timers (`#timing` and `#time`)
+
+Besides timing, can also be used for percents:
+
+```ruby
+6.times do
+  AdhearsionStats.timing "foo", 100
+end
+
+4.times do
+  AdhearsionStats.timing "foo", 0
+end
+
+# Sixty percent of the time, it works every time!
+
+```
+
+A block method is also available if you want to time an action:
+
+```ruby
+
+AdhearsionStats.time "time_spent_in_menu" do
+  menu menu_message do
+    ...
+  end
+end
+
+```
+
+#### Gauges
+
+Used to track running counts of something - these aren't reset each flush period.
+
 ### Links
 
 * [Adhearsion](http://adhearsion.com)

@@ -10,7 +10,7 @@ module AdhearsionStats
   end
 
   def self.setup_logger
-    logfile         = File.open(File.dirname(__FILE__) + "#{Adhearsion.root}/log/nitrometrics.log", 'a')
+    logfile         = File.open(File.dirname(__FILE__) + "#{Adhearsion.root}/log/adhearsion-stats.log", 'a')
     logfile.sync    = true
     @metrics_logger = MetricsLogger.new(logfile)
   end
