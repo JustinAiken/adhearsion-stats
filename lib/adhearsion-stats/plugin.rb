@@ -17,9 +17,10 @@ module AdhearsionStats
     init :statsd do
       AdhearsionStats.setup_logger if Adhearsion.config.statsd.log_metrics
 
-      AdhearsionStats.statsd = Statsd.new Adhearsion.config.statsd.host, Adhearsion.config.statsd.port
-      AdhearsionStats.loaded = true
+      statsd = Statsd.new Adhearsion.config.statsd.host, Adhearsion.config.statsd.port, UDPSocket.new
+      AdhearsionStats.statsd = AdhearsionStats::Stactor.new statsd
 
+      AdhearsionStats.loaded = true
       logger.info "Adhearsion-Stats has been loaded"
     end
   end
