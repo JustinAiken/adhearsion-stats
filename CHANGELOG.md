@@ -1,3 +1,6 @@
+# DEVELOP
+  * FEATURE: Stats for exceptions
+
 # 0.0.3
   * Use a single UDP Socket to send stats
 

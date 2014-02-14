@@ -11,13 +11,15 @@ describe AdhearsionStats do
   end
 
   describe "initialization" do
-    let(:logfile)       { double "File", 'sync=' => true }
-    let!(:dummy_logger) { AdhearsionStats::MetricsLogger.new(STDOUT) }
+    let(:exception_prefix) { nil }
+    let(:logfile)          { double "File", 'sync=' => true }
+    let!(:dummy_logger)    { AdhearsionStats::MetricsLogger.new(STDOUT) }
 
     before do
       File.stub(:open).and_return logfile
       AdhearsionStats::MetricsLogger.stub(:new).with(logfile).and_return dummy_logger
-      Adhearsion.config[:statsd].log_metrics = true
+      Adhearsion.config[:statsd].log_metrics      = true
+      Adhearsion.config[:statsd].exception_prefix = exception_prefix
       Adhearsion::Plugin.initializers.each { |plugin_initializer| plugin_initializer.run }
     end
 
@@ -54,6 +56,24 @@ describe AdhearsionStats do
 
           subject.metrics_logger.should_receive(:info).with 'timing(bar,100)'
           subject.timing "bar", 100
+        end
+      end
+
+      describe "Exceptions" do
+        context "when exception_prefix is nil" do
+          it "don't trigger a stat" do
+            subject.should_not_receive :increment
+            Adhearsion::Events.trigger_immediately :exception, StandardError.new
+          end
+        end
+
+        context "when exception_prefix is set" do
+          let(:exception_prefix) { "oh_noes" }
+
+          it "trigger a stat" do
+            subject.should_receive(:increment).with "oh_noes.StandardError"
+            Adhearsion::Events.trigger_immediately :exception, StandardError.new
+          end
         end
       end
     end
