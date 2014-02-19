@@ -1,3 +1,6 @@
+# feature/single_socket
+  * Use a single UDP Socket
+
 # 0.0.2
   * BUGFIX: Log location relative to `Adhearsion.root`
 
