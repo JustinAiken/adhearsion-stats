@@ -5,9 +5,9 @@ require "adhearsion-stats/version"
 Gem::Specification.new do |s|
   s.name        = "adhearsion-stats"
   s.version     = AdhearsionStats::VERSION
-  s.authors     = ["JustinAiken"]
+  s.authors     = ["Justin Aiken"]
   s.email       = ["jaiken@mojolingo.com"]
-  s.homepage    = "https://github.com/polysics/adhearsion-stats"
+  s.homepage    = "https://github.com/JustinAiken/adhearsion-stats"
   s.summary     = %q{Adhearsion plugin for stats}
   s.description = %q{Adhearsion plugin for stats. Reports via statsd.}
   s.license     = 'MIT'
