@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency %q<adhearsion>, ["~> 2.1"]
-  s.add_runtime_dependency %q<statsd-ruby>
+  s.add_runtime_dependency %q<justinaiken-statsd>
 
   s.add_development_dependency %q<coveralls>, ['>= 0']
   s.add_development_dependency %q<bundler>, ["~> 1.0"]
