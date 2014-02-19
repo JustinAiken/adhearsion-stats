@@ -22,9 +22,10 @@ describe AdhearsionStats do
     end
 
     it "sets init variables" do
-      subject.statsd.should be_an_instance_of Statsd
-      subject.statsd.host.should == "127.0.0.1"
-      subject.statsd.port.should == 8125
+      subject.statsd.should be_an_instance_of AdhearsionStats::Stactor
+      subject.statsd.statsd.should be_an_instance_of Statsd
+      subject.statsd.statsd.host.should == "127.0.0.1"
+      subject.statsd.statsd.port.should == 8125
 
       subject.metrics_logger.should be_an_instance_of AdhearsionStats::MetricsLogger
       subject.loaded.should be_true

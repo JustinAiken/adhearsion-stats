@@ -5,9 +5,9 @@ require "adhearsion-stats/version"
 Gem::Specification.new do |s|
   s.name        = "adhearsion-stats"
   s.version     = AdhearsionStats::VERSION
-  s.authors     = ["JustinAiken"]
+  s.authors     = ["Justin Aiken"]
   s.email       = ["jaiken@mojolingo.com"]
-  s.homepage    = "https://github.com/polysics/adhearsion-stats"
+  s.homepage    = "https://github.com/JustinAiken/adhearsion-stats"
   s.summary     = %q{Adhearsion plugin for stats}
   s.description = %q{Adhearsion plugin for stats. Reports via statsd.}
   s.license     = 'MIT'
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency %q<adhearsion>, ["~> 2.1"]
-  s.add_runtime_dependency %q<statsd-ruby>
+  s.add_runtime_dependency %q<justinaiken-statsd>
 
   s.add_development_dependency %q<coveralls>, ['>= 0']
   s.add_development_dependency %q<bundler>, ["~> 1.0"]
